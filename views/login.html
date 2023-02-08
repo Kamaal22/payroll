@@ -103,18 +103,18 @@ body {
 
 <div class="login-page">
     <div class="form">
-      <form class="register-form">
+      <form class="register-form" id="register" action="/create_account">
         <input type="text" placeholder="name"/>
         <input type="password" placeholder="password"/>
         <input type="text" placeholder="email address"/>
         <button>create</button>
         <p class="message">Already registered? <a href="#">Sign In</a></p>
       </form>
-      <form class="login-form" action="/check_login">
+      <form class="login-form" id="login" action="/check_login">
         <input type="text" id="user_name" name="user_name" placeholder="username"/>
         <input type="password" id="password" name="password" placeholder="password"/>
         <button type="submit">login</button>
-        <p class="message">Not registered? <a href="#">Create an account</a></p>
+        <p class="message">Not registered? <a href="signup">Create an account</a></p>
       </form>
     </div>
   </div>

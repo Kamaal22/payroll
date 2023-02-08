@@ -1,7 +1,16 @@
-<%- include('home.html') -%>
+<%- include('home.html') %>
 <style>
     body{
     margin-top: 5%;
+    margin-left: 5%;
+    margin-right:5%;
+
+    
+    }
+    .ml{
+        margin-left: 12px;
+
+
     }
 </style>
 
@@ -13,10 +22,17 @@
 
  
 
-        <button type="button" class="btn btn-dark " data-bs-toggle="modal" data-bs-target="#myModal" onclick="show_mode();">
+        <button type="button" class="btn btn-primary mb-3 ml" data-bs-toggle="modal" data-bs-target="#myModal" onclick="show_mode();">
            Add User
          </button
 
+         class="container-fluid">
+         <!-- DataTales Example -->
+         <div class="card shadow mb-4">    
+             <div class="card-header py-3">
+                 <h6 class="m-0 font-weight-bold text-dark">Accounts Details</h6>
+             </div>
+          
                <div class="container my-5">
                    <div class="table-responsive">
                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -36,7 +52,7 @@
                                        <td><%= d.name %></td>
                                        <td><%= d.phone %></td>
                                        <td><%= d.user_name %></td> 
-                                    <td> <span  class="btn bg-gradient-dark text-gray-300 " onclick="edit(`<%= d._id%>`,`<%= d.name%>`,`<%= d.phone%>`,`<%= d.user_name%>`,`<%= d.password%>`)">EDIT </span></td>
+                                    <td> <span  class="btn btn-primary" onclick="edit(`<%= d._id%>`,`<%= d.name%>`,`<%= d.phone%>`,`<%= d.user_name%>`,`<%= d.password%>`)">EDIT </span></td>
 
 
                                  
@@ -50,8 +66,6 @@
                </div>
     
        <!-- /.container-fluid -->
-
-
 
 <div class="modal fade" id="myModal"   role="dialog" aria-hidden="true">
    <div class="modal-dialog" role="document">
@@ -105,7 +119,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Add User </h5>
+                        <h5 class="modal-title" id="exampleModalLabel">User Details </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                    <span aria-hidden="true">&times;</span>
                </button>
@@ -139,7 +153,7 @@
 
                             </div>
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary">Save </button>
+                                <button type="submit" class="btn btn-primary">Save</button>
                             </div>
                         </form>
 
@@ -152,11 +166,7 @@
 
 
         <script>
-            $(document).ready(function() {
-                $('#dataTable').DataTable({
-                    pagingType: 'full_numbers',
-                });
-            });
+         
 
             function show_mode() {
                 $('#myModal').modal('show');
@@ -172,36 +182,5 @@
             }
         </script>
 
-        <!-- Footer -->
-        <footer class="sticky-footer bg-white">
-            <div class="container my-auto">
-                <div class="copyright text-center my-auto">
-                    <span>Copyright &copy; Your Website 2021</span>
-                </div>
-            </div>
-        </footer>
-        <!-- End of Footer -->
-
-        </div>
-        <!-- End of Content Wrapper -->
-
-        </div>
-        <!-- End of Page Wrapper -->
-
-
-        <!-- Bootstrap core JavaScript-->
-        <script src="vendor/jquery/jquery.min.js"></script>
-        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-        <!-- Core plugin JavaScript-->
-        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-        <!-- Custom scripts for all pages-->
-        <script src="js/sb-admin-2.min.js"></script>
-
-        <!-- Page level plugins -->
-        <script src="vendor/chart.js/Chart.min.js"></script>
-
-        <!-- Page level custom scripts -->
-        <script src="js/demo/chart-area-demo.js"></script>
-        <script src="js/demo/chart-pie-demo.js"></script>
+   
+      

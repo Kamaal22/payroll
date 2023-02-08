@@ -2,15 +2,29 @@
 <style>
     body{
     margin-top: 5%;
+    margin-left: 5%;
+    margin-right:5%;
+
+    
+    }
+    .ml{
+        margin-left: 12px;
+
+
     }
 </style>
+<head>
+
+    <a href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.min.css"></a>
+    <script src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
+</head>
 
 
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" onclick="show_mode();">
+        <button type="button" class="btn btn-primary  mb-3 ml" data-bs-toggle="modal" data-bs-target="#myModal" onclick="show_mode();">
            Add Department
          </button
    
-        class="container-fluid">
+        class="container-fluid mt-5">
 
    
          
@@ -27,6 +41,7 @@
                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                            <thead>
                                <tr>
+                                <tr><th>SerialNO</th>
                                    <th>Name</th>
                                    <th>Desc</th> 
                                    <th>Action</th>
@@ -35,14 +50,19 @@
                            </thead>
                          
                            <tbody>
+                            <%  var n=1 %>
+                     
+                
                                <% data.forEach( function(d){ %>
                                    <tr>
-                                       <td><%= d.name %></td>
-                                       <td><%= d.desc %></td> 
-                                    <td> <span  class="btn btn-primary" onclick="edit(`<%= d._id%>`,`<%= d.name%>`,`<%= d.phone%>`,`<%= d.user_name%>`,`<%= d.password%>`)">edit </span></td>
+                                    <td><%=n%></td>
+                                       <td><%= d.name%></td>
+                                       <td><%= d.desc%></td> 
+                                    <td> <span  class="btn btn-primary" onclick="edit(`<%= d._id%>`,`<%= d.name%>`,`<%= d.phone%>`,`<%= d.user_name%>`,`<%= d.password%>`)">EDIT </span></td>
                                    
                                  
                                    </tr> 
+                                   <%n++%>
                               <% })%>
                               
                            </tbody>
@@ -134,7 +154,18 @@
             </div>
         </div>
 
+<div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">Save</button>
+                            </div>
 
+                        </form>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
         <script>
             function show_mode() {
                 $('#myModal').modal('show');
@@ -142,42 +173,8 @@
 
             function edit(_id, name, desc) {
                 $('#_name').val(name)
-                $('_desc').val(desc)
+                $('#_desc').val(name)
                 $('#_id').val(_id)
                 $('#editModal').modal('show');
             }
         </script>
-
-        <!-- Footer -->
-        <footer class="sticky-footer bg-white">
-            <div class="container my-auto">
-                <div class="copyright text-center my-auto">
-                    <span>Copyright &copy; Your Website 2021</span>
-                </div>
-            </div>
-        </footer>
-        <!-- End of Footer -->
-
-        </div>
-        <!-- End of Content Wrapper -->
-
-        </div>
-        <!-- End of Page Wrapper -->
-
-
-        <!-- Bootstrap core JavaScript-->
-        <script src="vendor/jquery/jquery.min.js"></script>
-        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-        <!-- Core plugin JavaScript-->
-        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-        <!-- Custom scripts for all pages-->
-        <script src="js/sb-admin-2.min.js"></script>
-
-        <!-- Page level plugins -->
-        <script src="vendor/chart.js/Chart.min.js"></script>
-
-        <!-- Page level custom scripts -->
-        <script src="js/demo/chart-area-demo.js"></script>
-        <script src="js/demo/chart-pie-demo.js"></script>
