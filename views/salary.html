@@ -1,0 +1,181 @@
+<%- include('home.html') -%>
+<style>
+    body {
+        margin-top: 5%;
+    }
+</style>
+
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" onclick="show_mode();">
+    Add Salary
+</button class="container-fluid">
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Salary</h6>
+    </div>
+
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>jobTitle</th>
+                        <th>grade</th>
+                        <th>minimumSalary</th>
+                        <th>maximumSalary</th>
+                        <th>medianSalary</th>
+                        <th>currency</th>
+                        <th>Action</th>
+
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <% data.forEach( function(d){ %>
+                    <tr>
+                        <td><%= d.jobTitle %></td>
+                        <td><%= d.grade %></td>
+                        <td><%= d.minimumSalary %></td>
+                        <td><%= d.maximumSalary %></td>
+                        <td><%= d.medianSalary %></td>
+                        <td><%= d.currency %></td>
+                        <td> <span class="btn btn-primary"
+                                onclick="edit(`<%= d.jobTitle%>`,`<%= d.grade%>`,`<%= d.minimumSalary%>`,`<%= d.maximumSalary%>`,`<%= d.medianSalary%>`, `<%= d.currency%>`)">edit
+                            </span>
+                        </td>
+
+                    </tr>
+                    <% })%>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+</div>
+</div>
+<!-- /.container-fluid -->
+<!-- /////////////////////////////////////////////////////////////////////////////// Insert Model -->
+<div class="modal fade" id="myModal" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Salary</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+
+                <form action="save_salary" method="post">
+                    <div class="row">
+
+                        <div class="col-lg-12">
+                            <label>jobTitle</label>
+                            <input type="text" class="form-control" name="jobTitle" id="jobTitle">
+                        </div>
+
+                        <div class="col-lg-12">
+                            <label>grade</label>
+                            <input type="text" class="form-control" name="grade" id="grade">
+                        </div>
+                        <div class="col-lg-12">
+                            <label>minimumSalary</label>
+                            <input type="text" class="form-control" name="_minimumSalary" id="_minimumSalary">
+                        </div>
+
+                        <div class="col-lg-12">
+                            <label>maximumSalary</label>
+                            <input type="text" class="form-control" name="_maximumSalary" id="_maximumSalary">
+                        </div>
+                        <div class="col-lg-12">
+                            <label>medianSalary</label>
+                            <input type="text" class="form-control" name="_medianSalary" id="_medianSalary">
+                        </div>
+
+                        <div class="col-lg-12">
+                            <label>currency</label>
+                            <input type="text" class="form-control" name="_currency" id="_currency">
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Save </button>
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- /////////////////////////////////////////////////////////////////////////////////////////insert Model end -->
+
+<!-- //////////////////////////////////////////////////////////////////Update model start -->
+<div class="modal fade" id="editModal" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Update Dept </h5>
+                <button type="button" class="close btn" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+
+                <form action="/edit_salary" method="post">
+                    <input type="hidden" name="_id" id="_id">
+                    <div class="row">
+                        <div class="col-lg-12">
+
+                            <label>Name</label>
+                            <input type="text" class="form-control" name="_name" id="_name">
+                        </div>
+                        <div class="col-lg-12">
+
+                            <label>Desc</label>
+                            <textarea name="_desc" id="_desc" class="form-control"> </textarea>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Save </button>
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- ////////////////////////////////////////////////////////////////////////////////////// Update model end-->
+<script>
+    function show_mode() {
+        $('#myModal').modal('show');
+    }
+    function edit(jobTitle, grade, minimumSalary, maximumSalary, medianSalary, currency) {
+        $('#_jobTitle').val(jobTitle)
+        $('_grade').val(grade)
+        $('-minimumSalary').val(minimumSalary)
+        $('_maximumSalary').val(maximumSalary)
+        $('_medianSalary').val(medianSalary)
+        $('_currency').val(currency)
+        // $('#_id').val(_id)
+        $('#editModal').modal('show');
+    }
+</script>
+
+<!-- Footer -->
+<footer class="sticky-footer bg-white">
+    <div class="container my-auto">
+        <div class="copyright text-center my-auto">
+            <span>Copyright &copy; Your Website 2021</span>
+        </div>
+    </div>
+</footer>
+<!-- End of Footer -->
