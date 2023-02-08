@@ -1,18 +1,20 @@
-
-    <%- include('home.html') -%>
-
+<%- include('home.html') -%>
     <style>
         body{
         margin-top: 5%;
+        margin-left: 5%;
+        margin-right:5%;
+    
         
         }
         .ml{
             margin-left: 12px;
-
-
+    
+    
         }
     </style>
-        <button type="button" class="btn btn-dark mb-3 ml" data-bs-toggle="modal" data-bs-target="#myModal" onclick="show_mode();">
+    
+        <button type="button" class="btn btn-primary mb-3 ml" data-bs-toggle="modal" data-bs-target="#myModal" onclick="show_mode();">
            Add  Employee
          </button
    
@@ -32,7 +34,7 @@
                                    <th>Name</th>
                                    <th>Phone</th>
                                    <th>email</th>
-                                   <td>address</td>
+                                   <th>address</th>
                                    <th>qualification</th>
                                    <th>Department</th>
                                    <th>DOB</th>
@@ -44,12 +46,12 @@
                          
                            <tbody>
                           <%  var n=1 %>
-                               <% 
+                        
                    
                                
                                emp.forEach( function(d){ %>
                                    <tr>
-                                       <td><%= n%></td>
+                                       <td><%=n%></td>
                                        <td><%= d.empname %></td>
                                        <td><%= d.phone %></td>
                                        <td><%= d.email %></td>
@@ -57,7 +59,7 @@
                                        <td><%= d.qualification %></td> 
                                        <td><%= d.departments.name %></td> 
                                          <td><%=d.DOB %></td> 
-                                    <td> <span  class="btn bg-gradient-dark text-gray-300 " onclick="edit(`<%= d._id%>`,`<%= d.empname%>`,`<%= d.phone%>`,`<%= d.email%>`,`<%= d.adddress%>`,`<%= d.qualification%>`,`<%= d.DOB%>`)">EDIT </span></td>
+                                    <td> <span  class="btn btn-primary " onclick="edit(`<%= d._id%>`,`<%= d.empname%>`,`<%= d.phone%>`,`<%= d.email%>`,`<%= d.adddress%>`,`<%= d.qualification%>`,`<%= d.departments.name%>`,`<%= d.DOB%>`)">EDIT </span></td>
 
                                    </tr> 
                                             <%n++%>
@@ -161,27 +163,27 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <label>Employee Name</label>
-                                    <input type="text" class="form-control" name="name" id="name" placeholder="Enter First Name">
+                                    <input type="text" class="form-control" name="_name" id="_name" placeholder="Enter First Name">
                                 </div>
                                 <div class="col-lg-12">
                                     <label>Phone</label>
-                                    <input type="text" class="form-control" name="phone" id="phone" placeholder="Enter phone number">
+                                    <input type="text" class="form-control" name="_phone" id="_phone" placeholder="Enter phone number">
                                 </div>
                                 <div class="col-lg-12">
                                     <label>Email</label>
-                                    <input type="text" class="form-control" name="email" id="email" placeholder="Enter Username">
+                                    <input type="text" class="form-control" name="_email" id="_email" placeholder="Enter Username">
                                 </div>
                                 <div class="col-lg-12">
                                     <label>qualification</label>
-                                    <input type="text" class="form-control" name="qualification" id="qualification" placeholder="Enter Username">
+                                    <input type="text" class="form-control" name="-qua" id="_qua" placeholder="Enter Username">
                                 </div>
                                 <div class="col-lg-12">
                                     <label>DOB</label>
-                                    <input type="date" class="form-control" name="DOB" id="DOB">
+                                    <input type="date" class="form-control" name="_DOB" id="_DOB">
                                 </div>
                                 <div class="col-lg-12">
                                     <label>Department</label>
-                                    <select class="form-control" style="width: 100%;" id="department_id" name="department_id">
+                                    <select class="form-control" style="width: 100%;" id="_department_id" name="_department_id">
                                         
                                         
                                         <% data.forEach(function(d){ %>
@@ -210,58 +212,22 @@
 
 
         <script>
-            $(document).ready(function() {
-                $('#dataTable').DataTable({
-                    pagingType: 'full_numbers',
-                });
-            });
+       
 
             function show_mode() {
                 $('#myModal').modal('show');
             }
 
             function edit(_id, empname, email, phone, adddress, DOB, qualification, adddress, Department) {
-                $('#name').val(empname)
-                $('#phone').val(phone)
-                $('#email').val(email)
-                $('#DOB').val(DOB)
-                $('#address').val(adddress)
-                $('#department').val(name)
-                $('#quallification').val(qualification)
+                $('#_name').val(empname)
+                $('#_phone').val(phone)
+                $('#_email').val(email)
+                $('#_DOB').val(DOB)
+                $('#_address').val(adddress)
+                $('#_department').val(name)
+                $('#_qua').val(qualification)
                 $('#editModal').modal('show');
             }
         </script>
 
-        <!-- Footer -->
-        <footer class="sticky-footer bg-white">
-            <div class="container my-auto">
-                <div class="copyright text-center my-auto">
-                    <span>Copyright &copy; Your Website 2021</span>
-                </div>
-            </div>
-        </footer>
-        <!-- End of Footer -->
-
-        </div>
-        <!-- End of Content Wrapper -->
-
-        </div>
-        <!-- End of Page Wrapper -->
-
-
-        <!-- Bootstrap core JavaScript-->
-        <script src="vendor/jquery/jquery.min.js"></script>
-        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-        <!-- Core plugin JavaScript-->
-        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-        <!-- Custom scripts for all pages-->
-        <script src="js/sb-admin-2.min.js"></script>
-
-        <!-- Page level plugins -->
-        <script src="vendor/chart.js/Chart.min.js"></script>
-
-        <!-- Page level custom scripts -->
-        <script src="js/demo/chart-area-demo.js"></script>
-        <script src="js/demo/chart-pie-demo.js"></script>
+       
