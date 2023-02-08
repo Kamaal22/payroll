@@ -4,7 +4,21 @@ var User = require('../model/user')
 
 var Department = require('../model/departments')
 const employee = require('../model/employee')
+
 const res = require('express/lib/response')
+
+
+const deduction = require('../model/deduction')
+
+
+
+
+
+
+
+
+
+
 
 
 
