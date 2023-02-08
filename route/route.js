@@ -8,9 +8,10 @@ const res = require('express/lib/response')
 
 
 
+
 // get dashboard
 app.get('/', (req, res) => {
-        res.render('home', {
+        res.render('login', {
             data: []
         })
     })
