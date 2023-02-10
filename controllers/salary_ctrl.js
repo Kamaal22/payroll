@@ -12,20 +12,16 @@ var get_salary = (req, res)=>{
 // insert salary
 var salary_insert = (req, res) => {
     console.log(req.body)
-    let salary = new Salary({
+    var data = new salary({
         jobTitle: req.body.jobTitle,
         grade: req.body.grade,
         minimumSalary: req.body.minimumSalary,
         maximumSalary: req.body.maximumSalary,
-        medianSalary: req.body.medianSalary,
-        currency: req.body.currency
+        medianSalary : req.body.medianSalary,
+        currency :req.body.currency
     })
-    salary.save().then(()=>{
-        res.redirect('/salary')
-    }).catch(error =>{
-        res.json({
-            message: 'Data has not been saved'+ error
-        })
+    data.save().then((d) => {
+        res.redirect('salary')
     })
 }
 

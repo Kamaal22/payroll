@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+
+<body>
+	<h2>Employee Management System</h2>
+	<table>
+		<tr>
+			<th>Id</th>
+			<th>Name</th>
+			<th>Post</th>
+			<th>Salary</th>
+		</tr>
+		<% data.forEach(element=> { %>
+			<tr>
+				<td>
+					<%= element.employeeId %>
+				</td>
+				<td>
+					<%= element.employeeName %>
+				</td>
+				<td>
+					<%= element.employeePost %>
+				</td>
+				<td>
+					<%= element.employeeSalary %>
+				</td>
+			</tr>
+			<% }) %>
+	</table>
+
+</body>
+
+</html>

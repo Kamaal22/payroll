@@ -19,7 +19,11 @@ const salary_page = (req, res) => {
 }
 
 
-
+const payment_page = (req, res) => {
+    res.render('payment', {
+        data:payment
+    })
+}
 module.exports = {
-    home_page, login_page,salary_page
+    home_page, login_page,salary_page, payment_page
 }

@@ -51,6 +51,24 @@ var employee_insert = (req, res) => {
 }
 
 
+var employee_update = (req, res) => {
+    var emp = new employee({
+        empname: req.body.name,
+        phone: req.body.phone,
+        address: req.body.address,
+        salary: req.body.salary,
+        email: req.body.email,
+        qualification: req.body.qualification,
+        DOB: req.body.DOB,
+        salary: req.body.salary,
+        Department: req.body.department_id
+
+    })
+    employee.findOneAndUpdate({ _id: req.body._id }, data).then((d) => {
+        res.redirect('employee')
+    })
+}
+
 module.exports = {
-    get_employee, employee_insert
+    get_employee, employee_insert, employee_update
 }
