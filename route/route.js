@@ -20,15 +20,17 @@ var salaryCTRL = require('../controllers/salary_ctrl')
 
 
 // get root
-app.get('/', gotoPages.home_page)
-// get root
-app.get('/login', gotoPages.login_page)
-//login page handling
-app.post('/check_login', loginCTRL.check_login)
-
-    //get payment
+app.get('/', (req, res) => {
+        res.render('login', {
+            data: []
+        })
+    })
 //get salary form
-app.get('/payment', gotoPages.payment_page)
+    app.get('/salary', (req, res) => {
+        res.render('salary', {
+            data:salary
+        })
+    })
 //save some data to salary form
 app.post('/save_salary', salaryCTRL.salary_insert)
 
@@ -37,7 +39,7 @@ app.post('/save_salary', salaryCTRL.salary_insert)
     //Salary Report
  app.get('/salary_rpt', (req, res) => {
         res.render('salary_rpt', {
-            data: salary
+            data: []
         })
     })
 //employee profile report for the specific employee
@@ -62,6 +64,16 @@ app.post('/save_salary', salaryCTRL.salary_insert)
 app.get('/users', userCTRL.get_users)
 
 
+//get salary form
+app.get('/salary', (req, res) => {
+    salary.find({}).then((salary) => {
+    res.render('salary', {
+        data: salary
+    
+    })
+})
+})
+
 //SAVE USERS
 app.post('/save_user', userCTRL.insert_user)
 
@@ -78,7 +90,36 @@ app.post('/edit_dept', deptCTRL.dept_update)
 
 
 // get  employee info
-app.get('/employee', empCTRL.get_employee)
+app.get('/employee', (req, res) => {
+    employee.aggregate([{
+            $lookup: {
+                from: 'departments',
+                localField: 'Department',
+                foreignField: '_id',
+                as: 'departments'
+            },
+
+
+        },
+        {
+            $unwind:'$departments'
+        }
+    ], (err, emp) => {
+        console.log('emp', emp,)
+        Department.find({}).then((dept) => {
+            res.render('employee', {
+                data: dept,
+                emp: emp
+
+
+            })
+        })
+    })
+
+})
+
+
+
 //save employeee
 app.post('/save_emp', empCTRL.employee_insert)
 //edit employee

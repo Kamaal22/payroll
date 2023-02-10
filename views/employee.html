@@ -49,9 +49,9 @@
                         
                    
                                
-                               <%emp.forEach( function(d){ %>
+                               <%data.forEach(function(d){ %>
                                    <tr>
-                                       <td><%=n%></td>
+                                       <td><%= n% ></td>
                                        <td><%= d.empname %></td>
                                        <td><%= d.phone %></td>
                                        <td><%= d.email %></td>
@@ -59,7 +59,7 @@
                                        <td><%= d.qualification %></td> 
                                        <td><%= d.departments.name %></td> 
                                          <td><%=d.DOB %></td> 
-                                    <td> <span  class="btn btn-primary " onclick="edit(`<%= d._id%>`,`<%= d.empname%>`,`<%= d.phone%>`,`<%= d.email%>`,`<%= d.adddress%>`,`<%= d.qualification%>`,`<%= d.departments.name%>`,`<%= d.DOB%>`)">EDIT </span></td>
+                                    <td> <span  class="btn btn-primary " onclick="edit(`<%= d._id%>`,`<%= d.empname%>`,`<%= d.phone%>`,`<%= d.email%>`,`<%= d.adddress%>`,`<%= d.qualification %>`,`<%= d.departments.name %>`,`<%= d.DOB%>`)">EDIT </span></td>
 
                                    </tr> 
                                             <%n++%>
