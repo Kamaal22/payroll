@@ -13,15 +13,11 @@ var salary = require ('../model/salary')
 // get root
 app.get('/', (req, res) => {
         res.render('login', {
-            data: []
+            data: home
         })
     })
-//get salary form
-    app.get('/salary', (req, res) => {
-        res.render('salary', {
-            data:salary
-        })
-    })
+
+    
 //save some data to salary form
 app.post('/save_salary', (req, res) => {
     console.log(req.body)
@@ -43,7 +39,7 @@ app.post('/save_salary', (req, res) => {
     //Salary Report
     app.get('/salary_rpt', (req, res) => {
         res.render('salary_rpt', {
-            data: salary
+            data: []
         })
     })
 //employee profile report for the specific employee
@@ -73,6 +69,16 @@ app.get('/users', (req, res) => {
     })
 })
 
+
+//get salary form
+app.get('/salary', (req, res) => {
+    salary.find({}).then((salary) => {
+    res.render('salary', {
+        data: salary
+    
+    })
+})
+})
 
 //SAVE USERS
 app.post('/save_user', (req, res) => {
@@ -137,35 +143,33 @@ app.post('/edit_dept', (req, res) => {
 
 
 
-
-// get  employee info
 app.get('/employee', (req, res) => {
-    employee.aggregate([{
-            $lookup: {
-                from: 'departments',
-                localField: 'Department',
-                foreignField: '_id',
-                as: 'departments'
+        employee.aggregate([{
+                $lookup: {
+                    from: 'departments',
+                    localField: 'Department',
+                    foreignField: '_id',
+                    as: 'departments'
+                },
+    
+    
             },
-
-
-        },
-        {
-            $unwind:'$departments'
-        }
-    ], (err, emp) => {
-        console.log('emp', emp,)
-        Department.find({}).then((dept) => {
-            res.render('employee', {
-                data: dept,
-                emp: emp
-
-
+            {
+                $unwind: '$departments'
+            }
+        ], (err, emp) => {
+            console.log('emp', emp)
+            Department.find({}).then((dept) => {
+                res.render('employee', {
+                    data: dept,
+                    emp: emp
+    
+    
+                })
             })
         })
+    
     })
-
-})
 
 
 
